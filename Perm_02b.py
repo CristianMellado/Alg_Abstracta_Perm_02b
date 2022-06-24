@@ -133,27 +133,3 @@ print("\nMensaje original: ", mensaje)
 c = rsa.Cifrado(mensaje)
 print("Cifrado: ", c)
 print("Descifrado: ", rsa.Descifrado(c), "\n")
-
-
-def Cifrado(msg):
-  cade = ""
-  data = []
-  for m in msg:
-    me = rsa.Cifrado(ord(m))    # pasamos el valor en ascci de la palabra a el Cifrado RSA
-    encrip = me % ord('A') + 65   # rango [65, 122] donde 65='A' y 122='z'
-    cade += str("%c" % encrip)   # convertimos de decimal a word ascci
-    data.append(me)
-  return cade, data
-
-def Descifrado(msg, data):
-  cade = ""
-  for i in range(len(msg)):
-    med = rsa.Descifrado(data[i])
-    cade += str("%c" % med)
-  return cade
-
-words = ["Hello", "World", "Python", "CComp", "Algebra", "UCSP"]
-for word in words:
-  word_2, data = Cifrado(word)
-  word_3 = Descifrado(word_2, data)
-  print("Mnsje inicial = {:}, Cifrado = {:}, Descifrado = {:})".format(word, word_2, word_3))
